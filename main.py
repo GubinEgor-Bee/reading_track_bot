@@ -19,18 +19,21 @@ def main() -> None:
         logger.error("Токен не найден! Добавьте его в config.py.")
         return
 
-    # Создание приложения
+    # Создание приложения (поддержка JobQueue включается автоматически)
     application = Application.builder().token(config.BOT_TOKEN).build()
 
-    # Регистрация обработчиков
+    # Регистрация базовых команд
     application.add_handler(CommandHandler("start", handlers.start_command))
-    application.add_handler(CommandHandler("help", handlers.help_command))
     application.add_handler(CommandHandler("recommend", handlers.recommend_command))
-    application.add_handler(CommandHandler("track", handlers.track_command))
+    application.add_handler(CommandHandler("subscribe", handlers.subscribe_command))
     application.add_handler(CommandHandler("stats", handlers.stats_command))
 
+    # Регистрация сложных диалогов (отслеживание и рецензии)
+    application.add_handler(handlers.get_track_handler())
+    application.add_handler(handlers.get_review_handler())
+
     # Запуск бота
-    logger.info("Бот успешно запущен...")
+    logger.info("Бот успешно запущен и готов к работе...")
     application.run_polling()
 
 
