@@ -24,5 +24,12 @@
 
 ### 1. Клонирование репозитория
 ```bash
-git clone (ВСТАВЬТЕ_ССЫЛКУ_НА_ВАШ_GITHUB)
+git clone 
 cd reading_bot
+```
+
+### 2. Запуск через Docker
+- ```bash docker-compose up -d --build```
+
+- **Для просмотра логов: docker-compose logs -f**
+- **Для остановки бота: docker-compose down**

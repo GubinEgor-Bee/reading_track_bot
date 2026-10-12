@@ -1,0 +1,10 @@
+version: '3.8'
+
+services:
+  reading-bot:
+    build: .
+    container_name: reading_bot_container
+    restart: unless-stopped
+    # Указываем временную зону, чтобы расписание и напоминания работали по вашему времени
+    environment:
+      - TZ=Europe/Moscow
